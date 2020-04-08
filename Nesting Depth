@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t,n,i,j,k,T=1;  cin>>t; 
+    while(t--){
+        string s,o=""; cin>>s; s='0'+s+'0';
+        for(i=0;i<s.length()-2;i++){
+           k=s[i+1]-s[i];
+           if(k>0){
+                while(k--){
+                    o+='(';
+                }
+                o+=s[i+1];
+            }
+           else{
+               k*=-1;
+                while(k--){
+                    o+=')';
+                }
+                o+=s[i+1];
+            }
+        }
+        k=s[s.length()-2]-'0'; 
+        while(k--){
+                    o+=')';
+                }
+        cout<<"Case #"<<T++<<": "<<o<<endl;
+    }
+    return 0;
+}
