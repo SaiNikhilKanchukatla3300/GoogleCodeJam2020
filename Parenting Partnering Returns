@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t,n,i,j,k,T=1;  cin>>t; 
+    while(t--){ int c=0,jj=0; pair<int,int> C,J;int vv=0; vector<int> q;
+        cin>>n; vector<pair<int,int>> v,d; string s="";
+        for(i=0;i<n;i++){
+            cin>>j>>k;
+            //cout<<j<<k;
+                   v.push_back( make_pair(j,k)); 
+                   d.push_back( make_pair(j,k)); 
+                 //  cout<<v[i].first<<v[i].second<<endl;
+        }
+        sort(v.begin(),v.end());
+        s+='C';
+        c=1;
+        C=v[0];
+       // cout<<C.first<<C.second;
+    for ( j = 1; j<n; j++) 
+    { 
+        if(v[j].first>=C.second and c==1)
+        c=0;
+        if(jj==1){
+        if(v[j].first>=J.second) jj=0;
+        }
+      if ((v[j].first >= C.second and c==0 ) or (c==0 and jj==1)) 
+      { 
+          C=v[j];
+          c=1;
+           s+='C';
+      }
+      else if((c==1 and jj==0) or (v[j].first >= J.second and jj==0)) 
+      { 
+          J=v[j];
+          jj=1;
+           s+='J';
+      }
+      else if(c==1 and jj==1){
+      vv=1;
+      break;
+      }
+    } 
+    string ss=""; int ccc=0;
+    if(vv==0){
+        for(i=0;i<d.size();i++){
+            for(j=0;j<v.size();j++){
+                ccc=0;
+                if(v[j].first==d[i].first and v[j].second==d[i].second){
+                for(int k=0;k<q.size();k++){
+                   // cout<<q[k];
+                    if(j==q[k])
+                     ccc=1;
+                }
+                if(ccc==1) continue;
+                //cout<<endl;
+                ss+=s[j];
+                q.push_back(j);
+                break;  
+                }
+            }
+        }
+    }
+
+  //cout<<s;
+    if(vv==1)
+    cout<<"Case #"<<T++<<": IMPOSSIBLE"<<endl;
+    else
+    cout<<"Case #"<<T++<<": "<<ss<<endl;
+    }
+    return 0;
+}
